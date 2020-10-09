@@ -1,15 +1,13 @@
 Package: iniestat
-Title: What the Package Does (One Line, Title Case)
+Title: Toolbox to ease statistics on sport data 
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Romain",
+           family = "Chailan",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "romain.chailan@gmail.com.com")
+Description: Iniestat is intented to ease statistics making on sport data, as Andrès used to ease the ball for his teammates.
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
