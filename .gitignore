@@ -1,0 +1,42 @@
+**/*.Rproj.user
+**/*.Rhistory
+**/*.RData
+**/*.Ruserdata
+**/*.Rproj
+env.properties
+# Data
+**/*.csv
+**/*.CSV
+**/*.xml
+**/*.zip
+**/*.rar
+*.txt
+**/*.xlsx
+**/*.xls
+**/*.docx
+**/*.doc
+**/*.tsv
+**/*.ods
+**/*.html
+**/*.gif
+**/*.pdf
+# GMT #
+######
+*.gmtdefaults4
+*.gmtcommands4
+*gmt.history
+*.conf
+*.ps
+*.png
+*.dat
+*.xy*
+*.xyz*
+*.grd*
+*.csv*
+**/*.kml*
+# MACOS #
+#########
+*.DS_Store
+.Rproj.user
+.Rprofile
+renv
