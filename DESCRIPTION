@@ -1,13 +1,17 @@
 Package: iniestat
-Title: Toolbox to ease statistics on sport data 
+Title: A package to ease statistics on sport data 
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Romain",
            family = "Chailan",
            role = c("aut", "cre"),
            email = "romain.chailan@gmail.com.com")
-Description: Iniestat is intented to ease statistics making on sport data, as Andrès used to ease the ball for his teammates.
-License: `use_mit_license()`
+Description: Iniestat is intented to ease statistics for a data analyst, as Andrès used to ease the ball for his teammates. First development have been made in collaboration with Montpellier Hérault S. C. (MHSC) and the autors are thankful to this club.
+Imports:
+  tidyverse (>= 1.3.0), 
+  XML (>= 3.99),
+  xml2 (>= 1.3.2)
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
