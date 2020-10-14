@@ -40,3 +40,4 @@ env.properties
 .Rproj.user
 .Rprofile
 renv
+inst/doc
