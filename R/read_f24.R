@@ -2,13 +2,8 @@
 #' Internal use only.
 #' 
 #' @keywords internal
-#' 
 #' @return A tibble wich contains the evnets of the file specified in `file_path`.
 read_f24_single_file_ <- function(file_path) {
-  require(tidyverse)
-  require(xml2)
-  require(XML)
-  
   # read xml file -----------------------------------------------------------
   f24_opta <- xml2::read_xml(file_path)
   
@@ -37,7 +32,7 @@ read_f24_single_file_ <- function(file_path) {
   events_tibble <- NULL
   for (e in 1:length(events)) {
     
-    node <- xmlToList(events[[e]])
+    node <- XML::xmlToList(events[[e]])
     if (!is.atomic(node)) {
       events_tibble_tmp <- 
         node[['.attrs']] %>% 
@@ -71,14 +66,14 @@ read_f24_single_file_ <- function(file_path) {
             tibble::as_tibble_row()  
         } else {
           qualifier_tmp <- 
-            xmlToList(qualifiers_events_e[[q]]) %>% 
+            XML::xmlToList(qualifiers_events_e[[q]]) %>% 
             tibble::as_tibble_row() %>%
             dplyr::bind_rows(qualifier_tmp) 
         }
       }
       
       qualifier_tmp <- qualifier_tmp %>%
-        dplyr::mutate(parent_event_id = xmlAttrs(events[[e]])[['id']])
+        dplyr::mutate(parent_event_id = XML::xmlAttrs(events[[e]])[['id']])
       
       if (!("value" %in% names(qualifier_tmp))) {
         qualifier_tmp$value <- NA
@@ -97,8 +92,8 @@ read_f24_single_file_ <- function(file_path) {
   # join qualifiers ---------------------------------------------------------
   events_tibble_cplt <-
     events_tibble %>%
-    left_join(qualifiers, by=c("id"="parent_event_id")) %>%
-    bind_cols(game_attributs)
+    dplyr::left_join(qualifiers, by=c("id"="parent_event_id")) %>%
+    dplyr::bind_cols(game_attributs)
 
   # return ------------------------------------------------------------------
   return(events_tibble_cplt)
@@ -114,14 +109,12 @@ read_f24_single_file_ <- function(file_path) {
 #' @seealso read_opt
 #' 
 #' @examples  
+#' \dontrun{
 #' # use as follows
-#' # my_events_tibble <- read_f24('my_f24_file.xml')
+#' my_events_tibble <- read_f24('my_f24_file.xml')
+#' }
 #' @export
 read_f24 <- function(file_path=NULL, dir_path=NULL) {
-  require(tidyverse)
-  require(xml2)
-  require(XML)
-  
   # verify arguments --------------------------------------------------------
   if (is.null(file_path) & is.null(dir_path)) {
     stop("One of `file_path` OR `dir_path` argument has to be set.")

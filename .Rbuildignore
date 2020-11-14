@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 data/*.xml
+inst/extdata/*.xml
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

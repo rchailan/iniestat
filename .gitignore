@@ -10,6 +10,7 @@ env.properties
 **/*.xml
 **/*.zip
 **/*.rar
+**/*.xml
 *.txt
 **/*.xlsx
 **/*.xls
@@ -41,3 +42,4 @@ env.properties
 .Rprofile
 renv
 inst/doc
+docs

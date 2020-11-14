@@ -1,9 +1,9 @@
 ---
-title: "How to"
+title: "iniestat"
 author: Romain Chailan - romain.chailan@gmail.com
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{how}
+  %\VignetteIndexEntry{iniestat}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
