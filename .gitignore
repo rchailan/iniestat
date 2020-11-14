@@ -42,4 +42,3 @@ env.properties
 .Rprofile
 renv
 inst/doc
-docs
