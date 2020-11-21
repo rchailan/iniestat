@@ -19,18 +19,42 @@ knitr::opts_chunk$set(
 
 ```{r install-package, eval=FALSE}
 # If you do not have it yet, download and install the package `iniestat` with
-# library(devtools)
+require(devtools)
 devtools::install_github("rchailan/iniestat", auth_token="374a0736a7bdb9e73117fe3d5eb10f9fa9d62790")
 ```
 
-Do not forget to load the package in your environment with
+Then load the package in your environment with
 ```{r setup}
 library(iniestat)
 ```
 
+# Collect files
+
+The very first function you want to use is `iniestat::collect_f24()`.
+```{r collect-f24, eval=FALSE}
+# if you want all the available game of the season `season`
+collect_f24(user="XX12345", passwd="mypasswd", season=2020)
+
+# if you want the game of id `match_id`
+collect_f24(user="XX12345", passwd="mypasswd", match_id="7890")
+ 
+# if you want several games, use `matches_id` as
+collect_f24(user="XX12345", passwd="mypasswd", matches_id=c("7890", "7891", "7177"))
+ 
+# if you need to specify the root url you can set
+collect_f24(user="XX12345", passwd="mypasswd", season=2020, root_url="https://my_new_root_url")
+```
+
+You may want to choose to collect `F7` files associated with `F24` for further use. This is available with 
+```{r collect-f7, eval=FALSE}
+# if you want the game of id `match_id` and collect F7 files
+collect_f24(user="XX12345", passwd="mypasswd", match_id="7890", store_f7 = TRUE)
+```
+This option works with all former configurations.
+
 # Read F24 file(s)
 
-The very first function you want to use is `iniestat::read_f24()`.
+With the function `iniestat::read_f24()` you can then read the files just downloaded.
 It allows either to read one file or several files from a folder in one command only.
 
 ```{r read-files, eval=FALSE}

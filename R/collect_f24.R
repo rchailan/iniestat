@@ -46,7 +46,6 @@ collect_f24 <- function(user,
   if (!dir.exists(output_dir)) {
     dir.create(output_dir)
   }
-  
 
   # download(s) -------------------------------------------------------------
   if(!is.null(match_id)) { # single game
@@ -76,6 +75,28 @@ collect_f24 <- function(user,
                   root_url=root_url,
                   store_f7=store_f7)
     }
+  } else { # full season
+    
+    print("List of team")
+    # print to console list of team_id
+    collect_f1_teams_id(user=user, passwd=passwd,season=season) %>% 
+      print()
+    team_id <- readline(prompt="Enter uID of interest: ")
+    
+    # collect matches_id of the season
+    matches <- 
+      collect_f1_match_id(user=user,
+                          passwd=passwd, 
+                          season=season, 
+                          team_id = as.character(team_id))
+    
+    # collect all files
+    collect_f24(matches_id=matches$match_id,
+                user=user,
+                passwd=passwd,
+                output_dir=output_dir,
+                root_url=root_url,
+                store_f7=store_f7)
   }
 
 }
@@ -100,15 +121,77 @@ collect_f7_ <- function(user,
   if(file.exists(f)) {print(glue::glue("File {f} collected."))} else {stop("Something went wrong.")}
 }
 
+#' Collect all matches id from a team specified in parameter.
+#' The collected `match_id` can then be used in `collect_f24`.
+#'
+#' @param user User to connect to the \code{root_url} account`;`
+#' @param passwd Password of the \code{user} to use.
+#' @param season Season of the games to collect. If set, nor \code{match_id} nor \code{matches_id} are read.
+#' @param team_id Team to collect the matches from.
+#' @param root_url The url to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.
 #'
 #' @return A tibble made from four columns: a \code{match_id}, \code{home_team}, \code{away_team},
-#' @internal
+#' \dontrun{
+#' matches <- collect_f1_match_id(user="xxxxx", passwd = "xxxxx", team_id="xxxx", season=2020)
+#' 
+#' # collect 1st match
+#' collect_f24(user="xxxxx", passwd = "xxxxx", season=2020, matches_id = matches$match_id[1], output_dir = "my_path/to/folder")
+#' 
+#' collect all matches
+#' collect_f24(user="xxxxx", passwd = "xxxxx", season=2020, matches_id = matches$match_id, output_dir = "my_path/to/folder")
+#'
+#' }
+#' @export
 collect_f1_match_id <- function(user, 
                                 passwd,
+                                season,
                                 team_id,
                                 competition=24,
-                                root_url="http://omo.akamai.opta.net") {
+                                root_url="http://omo.akamai.opta.net/competition.php") {
   
+  # libs --------------------------------------------------------------------
+  require(dplyr)
+
+  # verify args -------------------------------------------------------------
+  if (is.null(team_id)) warnings("No team has been selected. Matches from the whole competition are collected.")
+
+  # collect f1 match --------------------------------------------------------
+  tmp <- curl::curl_download(
+    url = glue::glue("{root_url}?competition={as.numeric(competition)}&season_id={as.numeric(season)}&feed_type=F1&user={user}&psw={passwd}"),
+    destfile = tempfile()
+  )
+  
+  f1_opta <- xml2::read_xml(tmp)
+  doc <- XML::xmlParse(f1_opta)
+  matches <- XML::getNodeSet(doc, "//MatchData")
+  
+  if (length(matches) == 0) stop("Error while reading xml file. Please check your credentials or root_url or season.") 
+
+  matches_tibble <- 
+    sapply(matches, FUN = function(g) {
+      match_id <- XML::xmlGetAttr(g, "uID")
+      
+      team_data <- XML::xmlChildren(g, "//TeamData")
+      
+      team_infos_tibble <-
+        sapply(team_data, FUN = function(t) {
+          side <- XML::xmlGetAttr(t, "Side")
+          team_id <- XML::xmlGetAttr(t, "TeamRef")
+          score <- XML::xmlGetAttr(t, "Score")
+
+          return(list(side = side, team_id = team_id, score = score))
+        }) %>%
+        unlist()
+      
+      return(dplyr::bind_rows(match_id = stringr::str_remove(match_id, pattern = "g"), 
+                              team_ref_home= team_infos_tibble[2],
+                              team_ref_away= team_infos_tibble[5]))
+      }, simplify = FALSE) %>%
+    do.call("rbind",.) %>%
+    dplyr::as_tibble() %>%
+    dplyr::filter(team_ref_home == as.character(team_id) | team_ref_away == as.character(team_id))
+  
+  return(matches_tibble)
 }
   
 
@@ -132,6 +215,8 @@ collect_f1_teams_id <- function(user,
                                 competition=24,
                                 season,
                                 root_url="http://omo.akamai.opta.net/competition.php") {
+
+  # libs --------------------------------------------------------------------
   require(dplyr)
   
   # collect f1 file ---------------------------------------------------------
