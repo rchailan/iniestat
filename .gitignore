@@ -42,3 +42,5 @@ env.properties
 .Rprofile
 renv
 inst/doc
+# GITHUB PAGES #
+!docs/*
