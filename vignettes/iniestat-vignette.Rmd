@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ```{r install-package, eval=FALSE}
 # If you do not have it yet, download and install the package `iniestat` with
 require(devtools)
-devtools::install_github("rchailan/iniestat", auth_token="374a0736a7bdb9e73117fe3d5eb10f9fa9d62790")
+devtools::install_github("rchailan/iniestat")
 ```
 
 Then load the package in your environment with
