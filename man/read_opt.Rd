@@ -2,10 +2,10 @@
 % Please edit documentation in R/opt.R
 \name{read_opt}
 \alias{read_opt}
-\title{Read an opt file and convert it to \code{tidy-tibble}.}
+\title{Read an opt file at \code{file_path} and convert it into a \code{tidy-tibble}.}
 \usage{
 read_opt(file_path)
 }
 \description{
-Not implemented yet.
+
 }

@@ -31,6 +31,8 @@ collect_f24 <- function(user,
                         season=NULL, match_id=NULL, matches_id=NULL, 
                         root_url="http://omo.akamai.opta.net", 
                         store_f7=TRUE, ...) {
+  require(dplyr)
+  
   # verify arguments --------------------------------------------------------
   if (is.null(user)) {
     stop("user has to be specified.")

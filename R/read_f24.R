@@ -1,7 +1,6 @@
 #' Read OPTA-F24 from a single file.
 #' Internal use only.
 #' 
-#' @keywords internal
 #' @return A tibble wich contains the evnets of the file specified in `file_path`.
 read_f24_single_file_ <- function(file_path) {
   # read xml file -----------------------------------------------------------
@@ -115,6 +114,8 @@ read_f24_single_file_ <- function(file_path) {
 #' }
 #' @export
 read_f24 <- function(file_path=NULL, dir_path=NULL) {
+  require(dplyr)
+  
   # verify arguments --------------------------------------------------------
   if (is.null(file_path) & is.null(dir_path)) {
     stop("One of `file_path` OR `dir_path` argument has to be set.")
