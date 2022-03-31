@@ -12,7 +12,7 @@ read_f24(file_path = NULL, dir_path = NULL)
 \item{dir_path}{the OPTA-f24 file to parse. The files in the dir have to be f24 with an \code{.xml} extension.}
 }
 \value{
-A tibble wich contains the events of the file specified in \code{file_path} or ones from \code{dir_path} all together.
+A tibble which contains the events of the file specified in \code{file_path} or ones from \code{dir_path} all together.
 }
 \description{
 Read OPTA-F24 from a single file OR all files from a directory.

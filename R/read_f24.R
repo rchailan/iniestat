@@ -104,7 +104,7 @@ read_f24_single_file_ <- function(file_path) {
 #' 
 #' @param file_path the OPTA-f24 file to parse. The extension has to be `.xml`.
 #' @param dir_path the OPTA-f24 file to parse. The files in the dir have to be f24 with an `.xml` extension.
-#' @return A tibble wich contains the events of the file specified in `file_path` or ones from `dir_path` all together.
+#' @return A tibble which contains the events of the file specified in `file_path` or ones from `dir_path` all together.
 #' @seealso read_opt
 #' 
 #' @examples  
@@ -129,11 +129,11 @@ read_f24 <- function(file_path=NULL, dir_path=NULL) {
       list.files(path = dir_path, pattern = "*.xml", full.names = TRUE)
       
     events_tibble_cplt <- 
-      lapply(files_path, read_f24_single_file_) %>% 
+      lapply(files_path, iniestat::read_f24_single_file_) %>% 
       dplyr::bind_rows()
   } else { # case of a single file is provided
     events_tibble_cplt <- 
-      read_f24_single_file_(file_path)
+      iniestat::read_f24_single_file_(file_path)
   }
   
   return(events_tibble_cplt)
