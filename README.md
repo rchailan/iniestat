@@ -27,4 +27,4 @@ library(iniestat)
 
 ## Usage
 
-Check out the `articles` section for details.
+Check out the `Articles` section for details. General usage is described in the [Vignette](file:///Users/rchailan/Desktop/OnGoing/Github/iniestat/docs/articles/iniestat-vignette.html)
