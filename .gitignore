@@ -21,20 +21,7 @@ env.properties
 **/*.html
 **/*.gif
 **/*.pdf
-# GMT #
-######
-*.gmtdefaults4
-*.gmtcommands4
-*gmt.history
-*.conf
-*.ps
-*.png
-*.dat
-*.xy*
-*.xyz*
-*.grd*
-*.csv*
-**/*.kml*
+
 # MACOS #
 #########
 *.DS_Store
