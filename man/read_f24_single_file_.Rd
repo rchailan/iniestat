@@ -14,4 +14,3 @@ A tibble wich contains the evnets of the file specified in \code{file_path}.
 Read OPTA-F24 from a single file.
 Internal use only.
 }
-\keyword{internal}
