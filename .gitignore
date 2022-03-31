@@ -44,3 +44,4 @@ renv
 inst/doc
 # GITHUB PAGES #
 !docs/*
+docs
