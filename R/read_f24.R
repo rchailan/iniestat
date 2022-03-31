@@ -129,11 +129,11 @@ read_f24 <- function(file_path=NULL, dir_path=NULL) {
       list.files(path = dir_path, pattern = "*.xml", full.names = TRUE)
       
     events_tibble_cplt <- 
-      lapply(files_path, iniestat::read_f24_single_file_) %>% 
+      lapply(files_path, read_f24_single_file_) %>% 
       dplyr::bind_rows()
   } else { # case of a single file is provided
     events_tibble_cplt <- 
-      iniestat::read_f24_single_file_(file_path)
+      read_f24_single_file_(file_path)
   }
   
   return(events_tibble_cplt)
