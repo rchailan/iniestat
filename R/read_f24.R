@@ -1,7 +1,10 @@
 #' Read OPTA-F24 from a single file.
 #' Internal use only.
 #' 
-#' @return A tibble wich contains the evnets of the file specified in `file_path`.
+#' @param file_path the OPTA-f24 file to parse. The extension has to be `.xml`.
+#' 
+#' @return A tibble which contains the events of the file specified in `file_path`.
+#' @noRd
 read_f24_single_file_ <- function(file_path) {
   # read xml file -----------------------------------------------------------
   f24_opta <- xml2::read_xml(file_path)

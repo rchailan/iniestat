@@ -23,6 +23,8 @@ collect_f1_match_id(
 
 \item{team_id}{Team to collect the matches from.}
 
+\item{competition}{ID of the competition.}
+
 \item{root_url}{The url to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.}
 }
 \value{

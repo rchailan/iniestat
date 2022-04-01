@@ -8,7 +8,8 @@ Authors@R:
            email = "romain.chailan@gmail.com")
 Description: Iniestat is intented to ease statistics for a data analyst, as Andrès used to ease the ball for his teammates. First developments have been made in collaboration with Montpellier Hérault S. C. (MHSC) and the autors are thankful to this club.
 Imports:
-  tidyverse (>= 1.3.0), 
+  tidyverse (>= 1.3.0),
+  dplyr,
   XML (>= 3.99),
   xml2 (>= 1.3.2),
   curl 

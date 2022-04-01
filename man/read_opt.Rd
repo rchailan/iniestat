@@ -4,8 +4,22 @@
 \alias{read_opt}
 \title{Read an opt file at \code{file_path} and convert it into a \code{tidy-tibble}.}
 \usage{
-read_opt(file_path)
+read_opt(file_path = NULL)
+}
+\arguments{
+\item{file_path}{the OPT file to parse. This file must contains tracking
+infos.}
+}
+\value{
+TODO
 }
 \description{
-
+Read an opt file at \code{file_path} and convert it into a \code{tidy-tibble}.
+}
+\examples{
+ 
+\dontrun{
+# use as follows
+my_tracking_df <- read_opt('my_f24_file.xml')
+}
 }

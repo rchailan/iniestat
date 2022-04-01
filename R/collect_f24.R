@@ -7,7 +7,8 @@
 #' @param matches_id Specific games ids. Do not use with \code{season} set. If set, will overwrite \code{match_id}.
 #' @param store_f7 Store as well corresponding F7 file. Default set to \code{TRUE}.
 #' @param output_dir Output directory to write files to.
-#' @param root_url The url to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.
+#' @param root_url The URL to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.
+#' @param ... Additional arguments for the underlying functions.
 #' 
 #' @return Save to severals .xml files the collected .xml files.
 #' @examples  
@@ -104,7 +105,9 @@ collect_f24 <- function(user,
 }
 
 #'
-#' @internal
+#' Internal use only.
+#' 
+#' @noRd
 collect_f7_ <- function(user, 
                        passwd, 
                        output_dir, 
@@ -130,6 +133,7 @@ collect_f7_ <- function(user,
 #' @param passwd Password of the \code{user} to use.
 #' @param season Season of the games to collect. If set, nor \code{match_id} nor \code{matches_id} are read.
 #' @param team_id Team to collect the matches from.
+#' @param competition ID of the competition.
 #' @param root_url The url to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.
 #'
 #' @return A tibble made from four columns: a \code{match_id}, \code{home_team}, \code{away_team},
@@ -207,7 +211,7 @@ collect_f1_match_id <- function(user,
 #' 
 #' @return A tibble containing two columns: a \code{team_id} and a \code{label}
 #' 
-#' @example
+#' @examples
 #' \dontrun{
 #' iniestat::collect_f1_teams_id(user = "MYUSER", passwd = "MYPASSWD", season = 2020)
 #' }

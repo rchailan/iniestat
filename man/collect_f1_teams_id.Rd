@@ -29,3 +29,8 @@ A tibble containing two columns: a \code{team_id} and a \code{label}
 \description{
 Collect teams' id for a \code{season} and a \code{competition}.
 }
+\examples{
+\dontrun{
+iniestat::collect_f1_teams_id(user = "MYUSER", passwd = "MYPASSWD", season = 2020)
+}
+}

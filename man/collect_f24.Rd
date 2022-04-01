@@ -29,9 +29,11 @@ collect_f24(
 
 \item{matches_id}{Specific games ids. Do not use with \code{season} set. If set, will overwrite \code{match_id}.}
 
-\item{root_url}{The url to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.}
+\item{root_url}{The URL to collect the f24 file. By default it is set to \url{http://omo.akamai.opta.net}.}
 
 \item{store_f7}{Store as well corresponding F7 file. Default set to \code{TRUE}.}
+
+\item{...}{Additional arguments for the underlying functions.}
 }
 \value{
 Save to severals .xml files the collected .xml files.
